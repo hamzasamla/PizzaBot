@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PizzaBot</title>
+    <style>
+        html, body, div, span, applet, object, iframe,p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background-color:azure;
+}
+    .header{
+        background-color: darkred;
+        color: whitesmoke;
+        width: 100%;
+        height: 60px;
+        padding-top: 30px;
+        padding-bottom: 10px;   
+        text-align: center;
+        font-size: 40px;
+    }
+    .container{
+        width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2%;
+    }
+    .log{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-top: 10px;
+        margin-bottom: 2%;
+        padding-left: 15px;
+        border-left: 2px solid orangered;
+        background-color: #F0F0F0;
+    }
+.section{
+    border-bottom: 1px solid orangered;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+form{
+    margin-bottom: 10%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#text{
+    width: 70%;
+    height: 30px;
+    padding-left: 10px;
+}
+button{
+    width: 20%;
+    height: 35px;
+    background-color: darkred;
+    color: white;
+    font-size: 18px;
+    border: 1px solid orange;
+    transition: all 0.5s;
+}
+button:hover{
+    background-color: orange;
+    color: darkred;
+    border: 1px solid darkred;
+    cursor: pointer;
+    transform: translate(10px);
+}
+.footer{
+    text-align: center;
+    background-color: #222222;
+    color: orange;
+    font-size: 18px;
+    height: 40px;
+    padding-top: 20px;
+}
+    </style>
+ </head>
+
+<body>
+    <div class="header">
+    <p>Welcome to PizzaBot</p>
+</div>
+<div style="background-color: orangered; height: 8px;"></div>
+<br>
+<hr>
+<div class="container">
+    <div class="log">
+    {% for message in chatlog %}
+    <div class="section">
+        <p style="font-size: 18px;"><span style="color: darkred; font-weight: bold;">{{message.sender}}:</span> <span style="color: #222222">{{ message.message }}</span></p>
+        <p style="font-size: 12px; color: lightgrey;">{{ message.created}}</p></div>
+    {% endfor %}
+</div>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="post" id="text" placeholder="Place your order here" required=yes>
+       <!-- {{form}} -->
+        <button type="submit">SEND</button>
+    </form>
+</div>
+<div class="footer">Thanks for visiting!</div>
+</body>
+
+</html>
